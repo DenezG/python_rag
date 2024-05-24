@@ -8,11 +8,9 @@ from langchain.schema.document import Document
 from get_embedding_function import get_embedding_function
 from langchain.vectorstores.chroma import Chroma
 
-
+#Explication pour les fichiers pdf ligne 40
 CHROMA_PATH = "chroma"
-EXCEL_DATA_PATH = "data/excel"
-PDF_DATA_PATH = "data/pdf"
-
+DATA_PATH = "data"
 
 def main():
 
@@ -34,12 +32,12 @@ def load_documents():
     # Liste pour stocker les loaders
     document_loaders = []
     # Parcourir chaque fichier dans le dossier
-    for filename in os.listdir(EXCEL_DATA_PATH):
+    for filename in os.listdir(DATA_PATH):
         if filename.endswith('.xlsx') or filename.endswith('.xls') or filename.endswith('.xlsm'):  # Assurez-vous de filtrer uniquement les fichiers Excel
-            file_path = os.path.join(EXCEL_DATA_PATH, filename)
+            file_path = os.path.join(DATA_PATH, filename)
             loader = UnstructuredExcelLoader(file_path)
             document_loaders.append(loader)
-    document_loaders.append(PyPDFDirectoryLoader(PDF_DATA_PATH))
+    #document_loaders.append(PyPDFDirectoryLoader(DATA_PATH)) #Enlever le commentaire pour ajouter le loader de PDF et mettre en commentaire le loader d'Excel
     for loader in document_loaders:
     # Par exemple, pour charger et traiter les données de chaque document
         data = loader.load()
