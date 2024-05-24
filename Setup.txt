@@ -1,0 +1,34 @@
+Créer un environnement virtuel python: 
+    `python -m venv lang_rag
+    cd lang_rag
+    .\Scripts\Activate.ps1`
+
+Importer les fichiers du projet dans le dossier 
+
+
+
+Installer les dépendance modules dela peut prendre plusieurs minutes
+    `pip install -r requirements.txt`
+
+
+ajouter vos documents .xls dans le dossier data/excel les fichiers xlsm (semble) moins pertinents
+ajouter vos documents .pdf dans le dossier data/pdf
+
+Installer Ollama et le language embedding souhaité:
+    https://ollama.com/
+    Exemple de embedding nomic-embed-text: 
+        `ollama pull nomic-embed-text`
+
+
+Créer la base de donnée:
+    `python .\populate_database.py --reset`
+    '--reset' permet de supprimer les datas de la base donnée
+
+    `python query_data "Bonjour"`
+    permet de voir les résultat d'une requête dans le terminal
+
+Lancer le serveur API:
+    `unvicorn backend:app --reload `
+
+Le résultat est disponible par défaut si vous n'avez pas changé l'adresse uvicorne ici :
+    http://127.0.0.1:8000/query/
